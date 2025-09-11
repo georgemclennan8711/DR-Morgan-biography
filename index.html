@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Frederick Morgan, MD</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+<style>
+/* ===== General Styles ===== */
+body { 
+  font-family: 'Open Sans', sans-serif; 
+  margin:0; padding:0; 
+  line-height:1.6; 
+  background:#f5f7fa; 
+  color:#333;
+}
+
+header { 
+  background: #0b3d91; 
+  color:#fff; 
+  padding:20px; 
+  text-align:center;
+  position: sticky;
+  top:0;
+  z-index:1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-family:'Merriweather', serif;
+  font-size:2.2rem;
+  margin-bottom:10px;
+}
+
+nav a { 
+  color:#fff; 
+  margin:0 15px; 
+  text-decoration:none; 
+  font-weight:bold;
+  transition: color 0.3s;
+}
+nav a:hover { color:#d4af37; }
+
+/* ===== Hero Section ===== */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('assets/images/hospital1.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-family:'Merriweather', serif;
+  font-size:3rem;
+  color:#fff;
+  margin-bottom:15px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  opacity:0;
+  animation: fadeIn 1.2s forwards;
+}
+
+.hero-content p {
+  font-size:1.4rem;
+  color:#d4af37;
+  margin-bottom:25px;
+  opacity:0;
+  animation: fadeIn 1.6s forwards;
+}
+
+.hero-btn {
+  display:inline-block;
+  padding:15px 35px;
+  font-size:1.1rem;
+  color:#0b3d91;
+  background:#d4af37;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+  opacity:0;
+  animation: fadeIn 2s forwards;
+}
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ===== Sections ===== */
+section { 
+  padding:40px 30px; 
+  width:90%; 
+  max-width:1200px; 
+  margin:30px auto; 
+  background:#fff; 
+  border-radius:12px; 
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+
+h2 { 
+  border-bottom:3px solid #0b3d91; 
+  padding-bottom:8px; 
+  margin-top:0;
+  font-family:'Merriweather', serif;
+  font-size:1.8rem;
+  color:#0b3d91;
+}
+
+/* ===== Profile Image ===== */
+.profile { 
+  width:220px; height:220px; 
+  float:left; 
+  margin-right:25px; 
+  border-radius:12px; 
+  object-fit:cover; 
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== Hospital Feature Panel ===== */
+.hospital-info {
+  background: linear-gradient(to right, #e0f0ff, #ffffff);
+  border-left:6px solid #d4af37;
+  padding:20px;
+  margin-top:25px;
+  border-radius:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+.hospital-info img { 
+  width:100%; 
+  border-radius:10px; 
+  margin-bottom:15px; 
+  transition: transform 0.3s;
+}
+.hospital-info img:hover { transform: scale(1.03); }
+
+/* ===== Gallery ===== */
+.gallery-container {
+  width:100%; 
+  overflow:hidden; 
+  margin-top:25px; 
+  border-radius:12px; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  position:relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.gallery-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.gallery-container img:hover { transform: scale(1.05); }
+
+/* ===== Contacts Section Styling ===== */
+#contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.contact-box {
+  flex: 1 1 calc(33% - 20px); /* 3 boxes per row, responsive */
+  background: linear-gradient(to right, #e0f0ff, #ffffff);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+.contact-box:hover { transform: translateY(-5px); }
+
+.contact-box h3 {
+  color: #0b3d91;
+  margin-bottom: 12px;
+  font-family: 'Merriweather', serif;
+}
+
+.contact-box p, .contact-box a {
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.contact-box a:hover { color: #d4af37; }
+
+/* ===== Footer ===== */
+footer { 
+  background:#0b3d91; 
+  color:#fff; 
+  text-align:center; 
+  padding:20px; 
+  margin-top:30px; 
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn { to { opacity:1; } }
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .profile { float:none; display:block; margin:auto; margin-bottom:20px;}
+  .gallery-container { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .contact-box { flex: 1 1 100%; }
+  .hero-content h1 { font-size:2rem; }
+  .hero-content p { font-size:1.1rem; }
+  .hero-btn { padding:12px 25px; font-size:1rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Dr. Frederick Morgan, MD</h1>
+  <nav>
+    <a href="#bio">Bio</a>
+    <a href="#professional">Professional</a>
+    <a href="#humanitarian">Humanitarian Work</a>
+    <a href="#activities">Activities</a>
+    <a href="#contacts">Contacts</a>
+  </nav>
+</header>
+
+<!-- ===== Hospital Section ===== -->
+<section id="hospital11">
+  <h2>Bayshore Private Hospital</h2>
+  <img src="assets/images/hospital11.jpg" alt=""
+     style="width:100%; max-width:800px; height:auto; border-radius:10px; margin:20px 0;">
+  <p>
+    Nestled near downtown Tampa overlooking the bay, Bayshore Private Hospital blends world-class
+    cardiac and oncology care with luxurious surroundings. Patients recover in private suites
+    with panoramic water views, rooftop gardens, and the most advanced imaging labs in Florida.
+  </p>
+  <p>
+    Staffed by highly trained, multilingual professionals, Bayshore Private Hospital ensures
+    discreet, personalized care. Dr. Frederick Morgan provides locum tenens orthopedic
+    consultations, bringing specialized expertise wherever and whenever it is needed.
+  </p>
+</section>
+
+<!-- ===== Bio Section ===== -->
+<section id="bio">
+  <h2>Bio</h2>
+  <img src="assets/images/frederick.jpg" alt="Dr. Frederick Morgan" class="profile">
+  <div style="overflow:hidden;">
+    <h2>From the prestigious corridors of Ohio State to the frontlines of Gaza and Sudan, Dr. Frederick Morgan is a world-renowned orthopedic surgeon who brings precision, empathy, and discretion wherever he goes.</h2>
+    <div class="bio-content">
+      <p>
+        Internationally recognized orthopedic surgeon, <strong>Dr. Frederick Morgan</strong> is one of the world’s leading authorities in joint reconstruction, complex trauma care, and mobility restoration. 
+        Revered by colleagues across continents, he has served as a visiting consultant and trainer in top medical institutions worldwide, organizing advanced surgical workshops and international master classes 
+        attended by elite surgeons seeking to refine their skills.  
+      </p>
+      <p>
+        Known for his original and highly specialized approach to limb preservation and joint replacement, 
+        Dr. Morgan has pioneered innovative techniques in minimally invasive orthopedic surgery, cartilage repair, 
+        and prosthetic integration. His work has been published in prestigious international journals, where his 
+        studies on mobility restoration and patient-centered recovery have become a reference point in the field.  
+      </p>
+      <p>
+        He is also widely regarded as a leading expert in complex revision surgeries — cases where previous 
+        operations have failed and where precision, creativity, and technical mastery are essential. These 
+        demanding interventions have made him a sought-after surgeon for patients and colleagues alike, 
+        who rely on his ability to succeed where others cannot.  
+      </p>
+      <p>
+        Beyond the operating room, Dr. Morgan’s passion for humanitarian medicine has taken him across borders, 
+        from conflict zones to underserved rural communities. He sees surgery not only as a science, but as an art form 
+        rooted in restoring dignity through mobility. This same philosophy fuels his deep interest in design, architecture, 
+        and contemporary art, which he considers essential sources of inspiration for both his medical and personal life.  
+      </p>
+      <p>
+        A committed traveler without borders, Dr. Morgan balances his professional life with a love for exploration, 
+        immersing himself in diverse cultures while sharing his expertise wherever the need is greatest. He currently 
+        carries out his clinical activity across multiple international hospitals, maintaining a base of operations in the 
+        United States, with close collaborations in Europe, Africa, and Asia.  
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gallery Section ===== -->
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-container">
+      <img src="assets/images/hospital1.jpg" alt="Hospital View 1">
+      <img src="assets/images/hospital2.jpg" alt="Hospital View 2">
+      <img src="assets/images/hospital3.jpg" alt="Hospital View 3">
+  </div>
+</section>
+
+<!-- ===== Professional Section ===== -->
+<section id="professional">
+  <h2>Professional Curriculum & Education</h2>
+  <ul>
+    <li>Bachelor of Science in Biology, Ohio State University — 2005</li>
+    <li>Doctor of Medicine (MD), Ohio State University College of Medicine — 2009</li>
+    <li>Residency in Orthopedic Surgery, Cleveland Clinic — 2014</li>
+    <li>Fellowship in Sports Medicine & Joint Reconstruction, Case Western Reserve University — 2016</li>
+  </ul>
+</section>
+
+<!-- ===== Humanitarian Work ===== -->
+<section id="humanitarian">
+  <h2>Humanitarian Work</h2>
+  <ul>
+    <li>Médecins Sans Frontières (Doctors Without Borders) — providing orthopedic and trauma care in conflict zones and disaster areas</li>
+    <li>United Nations (UN) — supporting international medical missions and health initiatives</li>
+    <li>International Committee of the Red Cross (ICRC) — frontline medical assistance in war-torn regions</li>
+    <li>Global disaster relief missions — delivering urgent surgical care in remote and underserved locations</li>
+    <li>Humanitarian education and training — mentoring local medical staff in emergency procedures</li>
+  </ul>
+</section>
+
+<!-- ===== Activities Section ===== -->
+<section id="activities">
+  <h2>Activities</h2>
+  <ul>
+    <li>Mentoring and training orthopedic surgeons worldwide</li>
+    <li>Leading workshops on advanced surgical techniques and joint reconstruction</li>
+    <li>Collaborating with international medical teams on research and patient care</li>
+    <li>Organizing medical outreach programs in underserved and remote communities</li>
+    <li>Participating in global health conferences and forums</li>
+    <li>Promoting innovative approaches to sports medicine and orthopedic care</li>
+  </ul>
+</section>
+
+<!-- ===== Contacts Section ===== -->
+<section id="contacts">
+  <div style="display:flex; justify-content:space-between; flex-wrap:wrap; text-align:center; gap:20px;">
+
+    <div style="flex:1; min-width:200px;">
+      <h3><strong>Email</strong></h3>
+      <p>office.frederickmorganmd@mail.com</p>
+    </div>
+
+    <div style="flex:1; min-width:200px;">
+      <h3><strong>Phone</strong></h3>
+      <p>+1 (786) 757-7079</p>
+    </div>
+
+    <div style="flex:1; min-width:200px;">
+      <h3><strong>Address</strong></h3>
+      <p>123 Bayshore Ave, Suite 200</p>
+      <p>Tampa, FL 33602, USA</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ===== Footer ===== -->
+<footer>
+  <p>&copy; <span id="year"></span> Dr. Frederick Morgan</p>
+</footer>
+
+<script>
+// Dynamic Year
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
